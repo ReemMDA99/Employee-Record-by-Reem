@@ -44,5 +44,43 @@ function Menu() {
     ]
   })
 
-  .then 
+  .then(function (response) {
+    switch (response.menu) {
+      case "View all departments": 
+        viewAllDepts();
+        break;
+      case "View all roles":
+        viewAllRoles();
+        break;
+      case "View all employees":
+        viewAllEmployees();
+        break;
+      case "Add a department":
+        addDept();
+        break;
+      case "Add a role":
+        addRole();
+        break;
+      case "Add an employee":
+        addEmployee();
+        break;
+      case "Update an employee role":
+        updateEmployeeRole();
+        break;
+      case "Update Employee Manager":
+        updateEmployeeManager();
+        break;
+      case "View Employees By Manager":
+        viewEmployeesByManager();
+        break;
+      case "View Employees By Department":
+        viewEmployeesByDepartment();
+        break;
+
+      default:
+        db.end();
+        return;
+        
+    }
+  })
 }
