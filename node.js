@@ -117,6 +117,7 @@ const viewAllEmployees = () => {
     menu();
   })
 };
+
 // Create an empty Array to assign role title for add employee function
 let assignRoleArr = [];
 function chooseRole() {
@@ -140,11 +141,12 @@ function chooseManager() {
   })
   return assignManagerArr;
 }
+
 //Add a employee to database
 
 const addEmployee = () => {
-  db.query('SELECT * FROM role', function (err, results){
-    if(err) throw err;
+  // db.query('SELECT * FROM role', function (err, results){
+  //   if(err) throw err;
     inquirer.prompt([
       {
         name: 'first_name',
@@ -169,8 +171,24 @@ const addEmployee = () => {
         choices: chooseManager()
       }
 
-    ])
-  })
+    ]).then(function (answer){ 
+      let role_id = chooseRole().indexOf(answer.role) + 1
+      let manager_id = chooseManager().indexOf(answer.choices) + 1
+      db.query('INSERT INTO employee SET ?',
+      {
+        first_name: answer.firstName,
+        last_name: answer.lastName,
+        manager_id: manager_id,
+        role_id: role_id
+
+      },
+      function(err) {
+        if(err) throw err
+        console.table(answer)
+        menu()
+      }
+      )
+    })
   
 };
 
