@@ -1,13 +1,17 @@
 const mysql = require("mysql2");
+const util = require("util"); 
 // Connect to database
 const db = mysql.createConnection({
+    port: 3306,
     host: 'localhost',
-    // Your MySQL username,
+    //  MySQL username,
     user: 'root',
-    // Your MySQL password 
+    // MySQL password 
     password: 'Career@uoft2022',
-    database: 'employeeTrackerDB'
+    database: 'employeeTracker_db'
   });
+  connection.connect();
 
+  connection.query = util.promisify(connection.query); 
 
   module.exports = db;
