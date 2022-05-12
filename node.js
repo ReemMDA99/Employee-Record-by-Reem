@@ -193,8 +193,25 @@ const addEmployee = () => {
 //Add a department to database
 
 const addDept = () => {
-
+  inquirer.prompt([
+    {
+        name: "newDepartName",
+        type: "input",
+        message: "Please enter the name of the new department you wish to add:"
+    }
+])
+    .then(function (result) {
+      db.query('INSERT INTO department SET ?',{name: result.name},
+      db.query('SELECT * FROM department', function(err, res){
+        if(err) throw err;
+        console.table(result);
+        console.log('New department have been added successfully!');
+        menu();
+      })
+      )
+    })
 };
+
 //Add a role to database
 
 const addRole = () => {
