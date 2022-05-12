@@ -96,13 +96,46 @@ const viewAllDepts = () => {
 };
 
 //View All Roles in database
+const viewAllRoles = () => {
+
+}
 
 //View All Employees in database
 
+const viewAllEmployees = () => {
+
+}
 //Add a department to database
 
+const addDept = () => {
+
+}
 //Add a role to database
+
+const addRole = () => {
+  
+}
 
 //Add a employee to database
 
+const addEmployee = () => {
+  
+}
 //Update an employee role in database
+const updateEmployeeRole = () => {
+
+}
+// Update Employee Manager in database
+
+const updateEmployeeManager = () => {
+
+}
+// View Employees By Manager in database
+const viewEmployeesByManager = () => {
+
+}
+
+// View Employees By Department in database
+const viewEmployeesByDepts = () => {
+
+}
