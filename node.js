@@ -85,8 +85,8 @@ function Menu() {
   })
 };
 
-//View All Departments in database
 
+//View All Departments in database
 const viewAllDepts = () => {
   db.query('SELECT * FROM department', function (err, results){
     if(err) throw err;
@@ -107,9 +107,7 @@ const viewAllRoles = () => {
 };
 
 //View All Employees in database
-
 const viewAllEmployees = () => {
-  
   db.query('SELECT * FROM employee', function (err, results){
     if(err) throw err;
     console.log('All Employees=' + results.length);
