@@ -34,12 +34,12 @@ function Menu() {
             "Add a role", 
             "Add an employee",
             "Update an employee role",
-            //Add Bonus functionality
-            "Update employee managers",
-            "View employees by manager",
-            "View employees by department",
-            "Delete departments, roles, and employees",
-            "View the total utilized budget of a department",
+            // //Add Bonus functionality
+            // "Update employee managers",
+            // "View employees by manager",
+            // "View employees by department",
+            // "Delete departments, roles, and employees",
+            // "View the total utilized budget of a department",
             "Quit"
     ]
   })
@@ -67,15 +67,15 @@ function Menu() {
       case "Update an employee role":
         updateEmployeeRole();
         break;
-      case "Update Employee Manager":
-        updateEmployeeManager();
-        break;
-      case "View Employees By Manager":
-        viewEmployeesByManager();
-        break;
-      case "View Employees By Department":
-        viewEmployeesByDepts();
-        break;
+      // case "Update Employee Manager":
+      //   updateEmployeeManager();
+      //   break;
+      // case "View Employees By Manager":
+      //   viewEmployeesByManager();
+      //   break;
+      // case "View Employees By Department":
+      //   viewEmployeesByDepts();
+      //   break;
 
       default:
         db.end();
@@ -90,6 +90,7 @@ function Menu() {
 const viewAllDepts = () => {
   db.query('SELECT * FROM department', function (err, results){
     if(err) throw err;
+    console.log('All Departments=' + results.length);
     console.table(results);
     menu();
   })
@@ -97,45 +98,113 @@ const viewAllDepts = () => {
 
 //View All Roles in database
 const viewAllRoles = () => {
-
-}
+  db.query('SELECT * FROM role', function (err, results){
+    if(err) throw err;
+    console.log('All Roles=' + results.length);
+    console.table(results);
+    menu();
+  })
+};
 
 //View All Employees in database
 
 const viewAllEmployees = () => {
-
+  
+  db.query('SELECT * FROM employee', function (err, results){
+    if(err) throw err;
+    console.log('All Employees=' + results.length);
+    console.table(results);
+    menu();
+  })
+};
+// Create an empty Array to assign role title for add employee function
+let assignRoleArr = [];
+function chooseRole() {
+  db.query('SELECT * FROM role', function(err, results) {
+    if(err) throw err;
+    for(let i=0; i< results.length; i++) {
+      assignRoleArr.push(results[i].title);
+    }
+  })
+  return assignRoleArr;
 }
+
+// Create an empty Array to assign MANAGER title for add employee function
+let assignManagerArr = [];
+function chooseManager() {
+  db.query('SELECT SELECT first_name, last_name FROM employee WHERE manager_id IS NULL', function(err, results) {
+    if(err) throw err;
+    for(let i=0; i< results.length; i++) {
+      assignManagerArr.push(results[i].name);
+    }
+  })
+  return assignManagerArr;
+}
+//Add a employee to database
+
+const addEmployee = () => {
+  db.query('SELECT * FROM role', function (err, results){
+    if(err) throw err;
+    inquirer.prompt([
+      {
+        name: 'first_name',
+        type: 'input',
+        message: 'Please enter first name of the Employee'
+      },
+      {
+        name: 'last_name',
+        type: 'input',
+        message:'Please enter last name of the Employee '
+      },
+      {
+        name: 'role',
+        type: 'list',
+        message: 'Please choose the Role of Employee?',
+        choices: chooseRole()
+      },
+      {
+        name: 'manager_id',
+        type: 'input',
+        message: 'Please choose Manager name of Employee ID ?',
+        choices: chooseManager()
+      }
+
+    ])
+  })
+  
+};
+
 //Add a department to database
 
 const addDept = () => {
 
-}
+};
 //Add a role to database
 
 const addRole = () => {
   
-}
-
-//Add a employee to database
-
-const addEmployee = () => {
-  
-}
+};
 //Update an employee role in database
 const updateEmployeeRole = () => {
 
-}
-// Update Employee Manager in database
+};
+// // Update Employee Manager in database
 
-const updateEmployeeManager = () => {
+// const updateEmployeeManager = () => {
 
-}
-// View Employees By Manager in database
-const viewEmployeesByManager = () => {
+// }
+// // View Employees By Manager in database
+// const viewEmployeesByManager = () => {
 
-}
+// }
 
-// View Employees By Department in database
-const viewEmployeesByDepts = () => {
+// // View Employees By Department in database
+// const viewEmployeesByDepts = () => {
+//   db.query('SELECT employee.first_name, employee.last_name, department.name,', function (err, results){
+//     if(err) throw err;
+//     console.log('All Employees=' + results.length);
+//     console.table(results);
+//     menu();
+//   })
 
-}
+// }
