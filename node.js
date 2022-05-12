@@ -74,7 +74,7 @@ function Menu() {
         viewEmployeesByManager();
         break;
       case "View Employees By Department":
-        viewEmployeesByDepartment();
+        viewEmployeesByDepts();
         break;
 
       default:
@@ -83,4 +83,26 @@ function Menu() {
         
     }
   })
-}
+};
+
+//View All Departments in database
+
+const viewAllDepts = () => {
+  db.query('SELECT * FROM department', function (err, results){
+    if(err) throw err;
+    console.table(results);
+    menu();
+  })
+};
+
+//View All Roles in database
+
+//View All Employees in database
+
+//Add a department to database
+
+//Add a role to database
+
+//Add a employee to database
+
+//Update an employee role in database
