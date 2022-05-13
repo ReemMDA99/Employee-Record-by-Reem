@@ -20,7 +20,7 @@ INSERT INTO role (title, salary, department_id)
         ("Co-op", 60000, 1),
         ("Finanace manager", 100000, 2),
         ("Business analyst", 70000, 2),
-        ("Acoountant", 66000, 2),
+        ("Acountant", 66000, 2),
         ("HR manager", 90000, 3),
         ("Recuriter", 11000, 3),
         ("Sales rep", 85000, 4),

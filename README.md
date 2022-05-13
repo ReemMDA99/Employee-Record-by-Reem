@@ -29,9 +29,20 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Screenshots
 
+## Walkthrough video
+
+- A walkthrough video demonstrating the following functionality of my application:
+
+- This video demonstrates the functionality of the employee tracker submitted and a link to the video  included in my README file.
+
+- This video shows all of the technical acceptance criteria being met.
+
+- This video demonstrates how a user would invoke the application from the command line.
+
+- This video demonstrates a functional menu with the options outlined in the acceptance criteria.
+
 
 ## Submission urls
-- A walkthrough video demonstrating the functionality of the application:
 
 - The URL of the GitHub repository: https://github.com/ReemMDA99/Employee-Record-by-Reem
 
