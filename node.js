@@ -215,8 +215,51 @@ const addDept = () => {
 //Add a role to database
 
 const addRole = () => {
-  
+  db.query('SELECT * FROM department', function(err, result){
+    if(err) throw err;
+    inquirer.prompt([
+      {
+        name:'addNewRole',
+        type: 'input',
+        message:'Please add a new Role'
+      },
+      {
+        name:'addSalary',
+        type:'input',
+        message:'What is the salary of this role?'
+      },
+      {
+        name:'department',
+        type:'list',
+        message:'Please select which department this role belongs to:',
+        choices: function() {
+          let fromDept = [];
+          for (let i= 0; i < result.length; i++) {
+            fromDept.push(result[i].name);
+          }
+          return fromDept;
+        },
+      }
+    ]).then(function(results) {
+      let deptID;
+      for(let i=0; i< res.length; i++){
+        if (res[i].name == results.department) {
+          deptID = res[i].id;
+
+        }
+      } db.query('INSERT INTO role(name, salary, department) VALUES (?,?)',
+      [results.addNewRole, results.addSalary, results.deptID],
+      function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        console.log('New role have been added successfully');
+        menu();
+      })
+    })
+  })
 };
+
+
 //Update an employee role in database
 const updateEmployeeRole = () => {
 
