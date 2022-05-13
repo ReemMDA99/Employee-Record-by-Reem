@@ -17,10 +17,7 @@ const db = mysql.createConnection(
   console.log(`Successfully connected to the employeeTracker_db database.`)
 );
 // Create prompts for user to select options from menu
-function Menu() {
-  // =====
-  // Menu
-  // =====
+function menu() {
   inquirer.
     prompt ({
       type: 'list',
@@ -325,9 +322,8 @@ const updateEmployeeRole = () => {
 //     console.table(results);
 //     menu();
 //   })
-
 // }
-// quit the app
+// QUIT the app
 function quitApp() {
   db.end();
 };
