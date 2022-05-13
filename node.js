@@ -76,10 +76,11 @@ function Menu() {
       // case "View Employees By Department":
       //   viewEmployeesByDepts();
       //   break;
-
+      case 'QUIT':
+        quitApp();
+        break;
       default:
-        db.end();
-        return;
+       break;
         
     }
   })
@@ -242,7 +243,7 @@ const addRole = () => {
       }
     ]).then(function(results) {
       let deptID;
-      for(let i=0; i< res.length; i++){
+      for(let i=0; i < res.length; i++){
         if (res[i].name == results.department) {
           deptID = res[i].id;
 
@@ -262,7 +263,49 @@ const addRole = () => {
 
 //Update an employee role in database
 const updateEmployeeRole = () => {
-
+  db.query('SELECT * FROM employee:', function (err, results){
+    if (err) throw err;
+    inquirer.prompt({
+      name: 'selectEmployee',
+      type: 'list',
+      message: 'Please select the employee you wish to update:',
+      choices: function() {
+        let optionsArr = [];
+        for (let i =0; i < results.length; i++) {
+          optionsArr.push( i + 1 + results[i].first_name + "" + results[i].last_name);
+        }
+        return optionsArr;
+      },
+    }) .then(function (results) {
+      let selectedEmployee = parseInt(results.selectEmployee[0]);
+      db.query('SELECT * FROM role;', function(err, results) {
+        if(err) throw err;
+        inquirer.prompt (
+          {
+            name:'changeEmpRole',
+            type: 'list',
+            message: 'What role do you want to assign for this employee?',
+            choices: function() {
+              let updateRole = [];
+              for (let i=0; i < results.length; i ++){
+                updateRole.push(i+ 1 + "" + results[i].title);
+              }
+              return updateRole;
+            },
+        }).then(function (results) {
+          console.log(selectedEmployee);
+          let newEmpRoleId = parseInt(results.changeEmpRole[0]);
+          db.query('UPDATE employee SET role_id = ? WHERE id= ?;',
+          [newEmpRoleId, selectedEmployee],
+          function(err) {
+            if (err) throw err;
+            console.log("Update Employee's Role successfully!");
+            viewAllEmployees();
+          });
+        })
+      })
+    })
+  });
 };
 // // Update Employee Manager in database
 
@@ -284,3 +327,7 @@ const updateEmployeeRole = () => {
 //   })
 
 // }
+// quit the app
+function quitApp() {
+  db.end();
+};
