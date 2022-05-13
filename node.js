@@ -19,7 +19,7 @@ const db = mysql.createConnection(
 // Create prompts for user to select options from menu
 function menu() {
   inquirer.
-    prompt ({
+    prompt ([{
       type: 'list',
       name:'menu',
       message:'Welcome to our EMPLOYEE database, Please select your preferred options from the given Menu:',
@@ -39,7 +39,7 @@ function menu() {
             // "View the total utilized budget of a department",
             "Quit"
     ]
-  })
+  }])
 
   .then(function (response) {
     switch (response.menu) {
@@ -77,12 +77,12 @@ function menu() {
         quitApp();
         break;
       default:
-       break;
+        break;
         
     }
   })
 };
-
+menu();
 
 //View All Departments in database
 const viewAllDepts = () => {
@@ -138,11 +138,11 @@ function chooseManager() {
   return assignManagerArr;
 }
 
-//Add a employee to database
+//Add an employee to database
 
 const addEmployee = () => {
-  // db.query('SELECT * FROM role', function (err, results){
-  //   if(err) throw err;
+  db.query('SELECT * FROM role', function (err, results){
+    if(err) throw err;
     inquirer.prompt([
       {
         name: 'first_name',
@@ -166,7 +166,7 @@ const addEmployee = () => {
         message: 'Please choose Manager name of Employee ID ?',
         choices: chooseManager()
       }
-
+    
     ]).then(function (answer){ 
       let role_id = chooseRole().indexOf(answer.role) + 1
       let manager_id = chooseManager().indexOf(answer.choices) + 1
@@ -180,12 +180,11 @@ const addEmployee = () => {
       },
       function(err) {
         if(err) throw err
-        console.table(answer)
-        menu()
-      }
-      )
+        console.table(answer);
+        menu();
+      })
     })
-  
+  })
 };
 
 //Add a department to database
@@ -327,3 +326,4 @@ const updateEmployeeRole = () => {
 function quitApp() {
   db.end();
 };
+menu();

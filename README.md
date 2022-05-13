@@ -1,4 +1,7 @@
 # Employee-Record-by-Reem
+
+## Description
+
 Employee Record is an Employee Tracker CLI application that uses mySQL to create a DBMS for employee and company details.
 
 ## Acceptance Criteria
@@ -20,3 +23,34 @@ WHEN I choose to add an employee
 THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+
+### Database Schema
+![image](./assets/12-sql-homework-demo-01.png)
+
+## Screenshots
+
+
+## Submission urls
+- A walkthrough video demonstrating the functionality of the application:
+
+- The URL of the GitHub repository: https://github.com/ReemMDA99/Employee-Record-by-Reem
+
+## Technologies used
+
+- HTML	
+- Javascript	
+- Node.js
+- npm
+- Mysql2 package
+- Inquirer package
+- console.table package
+
+## Installation
+- Run npm install in console. 
+- Run mysql in project directory and initialize db with tables by running source db/schema.sql and source db/seed.sql while in the mysql terminal.
+
+## License
+
+Licensed under the MIT 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
