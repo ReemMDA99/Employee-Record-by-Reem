@@ -25,15 +25,20 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
 ### Database Schema
+
 ![image](./assets/12-sql-homework-demo-01.png)
 
 ## Screenshots
 
+![image](./assets/Picture1.png)
+![image](./assets/Picture2.png)
+![image](./assets/Picture3.png)
+
 ## Walkthrough video
 
-- A walkthrough video demonstrating the following functionality of my application:
+- A walkthrough video url demonstrating the following functionality of my application:
 
-- This video demonstrates the functionality of the employee tracker submitted and a link to the video  included in my README file.
+- This video demonstrates the functionality of the employee tracker submitted and a link to the video  included in my README file
 
 - This video shows all of the technical acceptance criteria being met.
 
@@ -41,17 +46,22 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 - This video demonstrates a functional menu with the options outlined in the acceptance criteria.
 
+https://drive.google.com/file/d/1oerAnS4Z624VEe0Orz7JjiTcBYrfUfoZ/view?usp=sharing
 
 ## Submission urls
 
 - The URL of the GitHub repository: https://github.com/ReemMDA99/Employee-Record-by-Reem
+
+- This walkthrough video demonstrates the functionality of the employee tracker submitted and a link to the video  included in my README file: https://drive.google.com/file/d/1oerAnS4Z624VEe0Orz7JjiTcBYrfUfoZ/view?usp=sharing
+
+- This walkthrough video demonstrates the usage of MYSQL in my application: https://drive.google.com/file/d/1N-882hyJSzRfUVt-wB0F88-bBtBSOSs4/view?usp=sharing
 
 ## Technologies used
 
 - HTML	
 - Javascript	
 - Node.js
-- npm
+- npm packages
 - Mysql2 package
 - Inquirer package
 - console.table package

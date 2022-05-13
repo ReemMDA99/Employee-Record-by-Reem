@@ -20,6 +20,7 @@ const db = mysql.createConnection(
 function menu() {
   inquirer.
     prompt ([{
+      
       type: 'list',
       name:'menu',
       message:'Welcome to our EMPLOYEE database, Please select your preferred options from the given Menu:',
