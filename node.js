@@ -142,35 +142,35 @@ const addDept = () => {
 addRole = () => {
   db.query(`SELECT * FROM department;`, (err, res) => {
       if (err) throw err;
-      let departments = res.map(department => ({name: department.name, value: department.department_id}));
+      let setDept = res.map(department => ({name: department.name, value: department.department_id}));
       inquirer.prompt([
           {
           name: 'title',
           type: 'input',
-          message: 'What is the name of the role you want to add?'   
+          message: 'What role do you like to add?'   
           },
           {
           name: 'salary',
           type: 'input',
-          message: 'What is the salary of the role you want to add?'   
+          message: 'How much would be the salary of this Role? Please enter numbers.'   
           },
           {
           name: 'deptName',
           type: 'list',
-          message: 'Which department do you want to add the new role to?',
-          choices: departments
+          message: 'Which department do this role belongs to?',
+          choices: setDept
           },
-      ]).then((response) => {
+      ]).then((answer) => {
           db.query(`INSERT INTO role SET ?`, 
           {
-              title: response.title,
-              salary: response.salary,
-             department_id: response.deptName
+              title: answer.title,
+              salary: answer.salary,
+             department_id: answer.deptName
           },
           (err, res) => {
               if (err) throw err;
-              console.table(response);
-              console.log(`${response.title} iis now added to database!`);
+              console.table(answer);
+              console.log(`${answer.title} is now added to database!`);
               menu();
           })
 
